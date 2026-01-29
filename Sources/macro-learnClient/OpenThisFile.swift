@@ -25,5 +25,6 @@ struct MainApp {
     }
 }
 
-// Editor width gauge:
+// Editor width gauge: position so line wraps after 65th col
 //34567891123456789212345678931234567894123456789512345678961234567897
+//  ^^^^^ wrap should show "67897" aligned above these carats.

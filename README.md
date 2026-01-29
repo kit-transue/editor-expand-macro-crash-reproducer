@@ -10,14 +10,16 @@ Editor: Xcode Version 26.2 (17C52)
 ## Steps that reproduced
 
 - build
-- open a second editor pane on right
+- arrange editor pane to wrap after 65th column:
+  - with default layout: open a second editor pane on right (proably depends on monitor size)
+  - with single window: narrow Xcode window to minimum allowed, then expand left-side tool panel until alignment marks in editor for OpenThisFile.swift show 65 monospaced columns
 - in either editor: navigate to ``Good`` in "OpenThisFile.swift"
 - expand the @AddMemberOfSpecificLength macro
 - repeat for ``Good2``
-- experience immediate, 100% repeatable crash
+- experience immediate, 100% repeatable crash on multiple computers
 
 
-## Lost reproducer/line wrap
+## Line wrap
 
 A prerequisite for this reproducer was to have two editor
 panes open side-by-side. The crash did not reproduce in a single
@@ -35,11 +37,6 @@ disappear. At least one line needed to be long-ish.
 
 I suspect a boundary condition near the line wrap point.
 
-Based on this theory, I tried closing the second pane but making
-the first pane about the size it was when it was sharing
-space with a sibling. No crash.
-
-Unfortuneately, my window resizing also broke the original
-reproducer.
-
-Making a very rough guess: I'd say the pane was about 60 characters wide.
+With this theory: the crash may go away if the editor window
+is resized. It reproduces with a single editor pane if the
+editor wraps (for monospaced source lines) after column 65.
