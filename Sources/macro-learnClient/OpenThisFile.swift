@@ -1,12 +1,19 @@
-// In Xcode Version 26.2 (17C52), open more than
-// one editor pane, then expand both of the following
-// macro usages (in either order):
+// In Xcode:
+// - Version 26.2 (17C52)
+// - Version 26.4 (24909)
+// - Version 26.4.1 (24909.0.3)
+// - Version 26.5 (17F42)
 
-// (1) build
-@AddMemberOfSpecificLength  // (2) <--- expand this
+// (Step 1) Set the width of an Xcode Editor pane: so this file wraps after 65th column:
+//34567891123456789212345678931234567894123456789512345678961234567897
+//  ^^^^^ wrap should show "67897" aligned above these carats.
+
+// (Step 2) build this project
+
+@AddMemberOfSpecificLength  // (Step 3) <--- expand this macro
 struct Good {}
 
-@AddMemberOfSpecificLength  // (3) <--- expand this
+@AddMemberOfSpecificLength  // (Step 4) <--- expand this macro and observe crash
 struct Good2 {}
 
 // (4) Expect Xcode crash
@@ -25,6 +32,3 @@ struct MainApp {
     }
 }
 
-// Editor width gauge: position so line wraps after 65th col
-//34567891123456789212345678931234567894123456789512345678961234567897
-//  ^^^^^ wrap should show "67897" aligned above these carats.
